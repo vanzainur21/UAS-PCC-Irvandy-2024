@@ -1,0 +1,15 @@
+jobs:
+  Build-and-push-docker-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Build and tag docker image
+        run: |
+          docker build -t ${{secrets.USERNAME}}/action-uaspcc:v1 -f dockerfile .
+
+      - name: Push to docker hub
+        run: |
+          docker login -u ${{secrets.USERNAME}} -p ${{secrets.ACCESS_TOKEN}}
+          docker push ${{secrets.USERNAME}}/action-uaspcc:v1
