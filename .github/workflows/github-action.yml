@@ -13,7 +13,7 @@ jobs:
 
       - name: Build and tag docker image
         run : |
-          docker build -t ${{secrets.USERNAME}}/action-uaspcc2024:v1 -f dockerfile .
+          docker build -t ${{secrets.USERNAME}}/action-uaspcc2024:v1 -f Dockerfile .
 
       - name: Push to Dockerhub
         run : docker login -u ${{secrets.USERNAME}} -p ${{secrets.ACCESS_TOKEN}} && docker push ${{secrets.USERNAME}}/action-uaspcc2024:v1
